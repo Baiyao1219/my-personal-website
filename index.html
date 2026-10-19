@@ -41,7 +41,16 @@ section{padding:115px 0;border-bottom:1px solid var(--line);scroll-margin-top:35
 footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
 @media(max-width:700px){nav{padding:24px 6%}.navlinks{gap:12px}.navlinks a{font-size:9px}.hero{min-height:65vh}.aboutgrid{grid-template-columns:1fr;gap:25px}.experience-item{grid-template-columns:1fr;gap:12px}.travelgrid{grid-template-columns:1fr 1fr}section{padding:75px 0}.sectionhead{margin-bottom:35px}footer{gap:20px}}
 @media(max-width:380px){.navlinks{gap:8px}.navlinks a{font-size:8px}}
-</style>
+.photo {
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}</style>
 </head>
 <body>
 <nav>
@@ -58,7 +67,9 @@ footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content
 <section id="about">
 <div class="sectionhead"><h2>A little about me.</h2><span class="number">01 / ABOUT</span></div>
 <div class="aboutgrid">
-<div class="photo">Portrait coming soon</div>
+<div class="photo">
+  <img src="portrait.jpg" alt="Portrait of Baiyao">
+</div>
 <div><p>Hi, I'm Baiyao — an economics student at the University of Bonn, currently based in Germany.</p><p>I'm interested in business, technology, and how ideas connect across different industries and cultures.</p><p>Outside of university, I enjoy discovering new cities, travelling, and documenting the little moments along the way.</p></div>
 </div>
 </section>

@@ -50,7 +50,38 @@ footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content
   height: 100%;
   object-fit: cover;
   object-position: center;
-}</style>
+}
+
+.travelcard {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.travelcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.travelcard:hover img {
+  transform: scale(1.05);
+}
+
+.travelcard span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 45px 18px 18px;
+  color: white;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+}
+</style>
 </head>
 <body>
 <nav>
@@ -81,7 +112,20 @@ footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content
 <section id="travel">
 <div class="sectionhead"><h2>Places & perspectives.</h2><span class="number">03 / TRAVEL</span></div>
 <p>A collection of places, experiences and memories. Always curious about what's around the next corner.</p>
-<div class="travelgrid"><div class="travelcard">01 / Moments</div><div class="travelcard">02 / Cities</div><div class="travelcard">03 / Perspectives</div></div>
+<div class="travelgrid">
+  <div class="travelcard">
+    <img src="sky.jpg" alt="Evening sky">
+    <span>01 / Moments</span>
+  </div>
+  <div class="travelcard">
+    <img src="paris.jpg" alt="Eiffel Tower in Paris">
+    <span>02 / Paris</span>
+  </div>
+  <div class="travelcard">
+    <img src="stockholm.jpg" alt="Stockholm Arlanda Airport">
+    <span>03 / Stockholm</span>
+  </div>
+</div>
 </section>
 <section id="contact" class="contact">
 <div class="kicker">04 / CONTACT</div>

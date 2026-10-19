@@ -91,6 +91,27 @@ footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content
   text-transform: uppercase;
   color: var(--muted);
 }
+.visited-places {
+  margin-top: 65px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+
+.visited-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--muted);
+}
+
+.flags {
+  font-size: 30px !important;
+  line-height: 2 !important;
+  letter-spacing: 5px;
+  margin-top: 25px !important;
+}
 </style>
 </head>
 <body>
@@ -136,9 +157,22 @@ footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content
   </div>
   <div class="travelcard">
     <img src="stockholm.jpg" alt="Stockholm Arlanda Airport">
-    <span>03 / Stockholm</span>
+        <span>03 / Stockholm</span>
   </div>
 </div>
+
+<div class="visited-places">
+  <div class="visited-heading">
+    <span>PLACES I'VE BEEN</span>
+    <span>21 COUNTRIES & REGIONS</span>
+  </div>
+
+  <p class="flags">
+    🇩🇪 🇨🇳 🇭🇰 🇲🇴 🇫🇷 🇳🇱 🇮🇹 🇪🇸 🇻🇦 🇦🇹
+    🇮🇩 🇰🇭 🇹🇷 🇱🇺 🇵🇱 🇲🇹 🇨🇿 🇸🇪 🇧🇪 🇭🇷 🇭🇺
+  </p>
+</div>
+
 </section>
 <section id="contact" class="contact">
 <div class="kicker">04 / CONTACT</div>

@@ -25,14 +25,18 @@ was unavailable through the connector; the successful build log supplies the sou
 - `TRAVEL.md`: these maintenance and preview instructions.
 
 The original README and all five JPEG files are included unchanged in this copy.
-Leaflet 1.9.4 is the only library, loaded from unpkg with integrity hashes as in
-the [official quick start](https://leafletjs.com/examples/quick-start/).
+Leaflet 1.9.4 is the only library, served locally from `vendor/leaflet/` with its
+license and original image assets. This removes the runtime dependency on unpkg.
+The map container has a responsive explicit height and is visible from the initial
+HTML, with a loading message replaced on initialization. It stays visible even if
+Leaflet cannot load. Versioned Travel CSS/JS URLs avoid reusing the prior cached
+page logic. The world view initializes independently of the empty trip dataset.
 No new photos, build configuration, or deployment settings are added.
 Existing homepage travel photos are not treated as dated trips.
 
 ## Preview
 
-Serve the repository locally (internet is needed for Leaflet and map tiles):
+Serve the repository locally (internet is needed only for OpenStreetMap tiles):
 
 ```powershell
 cd outputs/website-repository

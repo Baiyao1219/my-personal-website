@@ -1,0 +1,2 @@
+# Keep vendored Leaflet distribution bytes intact across Windows checkouts.
+vendor/leaflet/** -text

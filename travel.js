@@ -61,9 +61,10 @@
     && latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180);
   if (!window.L) {
     status.textContent = 'The map could not load. Please check your connection or browse the timeline below.';
+    container.querySelector('.map-loading').textContent = 'The world map is temporarily unavailable. Please reload to try again.';
     return;
   }
-  container.hidden = false;
+  container.replaceChildren();
   const map = L.map(container, { scrollWheelZoom: false, worldCopyJump: true }).setView([20, 0], 2);
   const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -109,5 +110,6 @@
     map.fitBounds(L.latLngBounds(locations.map(({ latitude, longitude }) => [latitude, longitude])), { padding: [35, 35], maxZoom: 6 });
   }
   // Recompute sizing when responsive layouts or device orientation change.
+  requestAnimationFrame(() => map.invalidateSize());
   if (window.ResizeObserver) new ResizeObserver(() => map.invalidateSize()).observe(container);
 })();

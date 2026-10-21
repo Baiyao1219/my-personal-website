@@ -16,21 +16,23 @@ was unavailable through the connector; the successful build log supplies the sou
 
 - `index.html`: only the Travel navigation target changes from `#travel` to
   `travel.html`. All existing CSS, sections, text, and images are preserved.
-- `travel.html`: dedicated archive with title/subtitle, noninteractive map
-  placeholder, timeline, empty state, and navigation back to homepage sections.
+- `travel.html`: dedicated archive with title/subtitle, Leaflet map with
+  OpenStreetMap tiles, timeline, empty state, and homepage navigation.
 - `travel.css`: styles for the new page using the existing palette and typography.
 - `data/trips.js`: empty dataset with field documentation and a commented template.
-- `travel.js`: dependency-free timeline rendering, grouped by year and sorted
-  newest first. Invalid calendar dates are omitted. Descriptions render as text.
+- `travel.js`: map markers and timeline from the same dataset, newest first and
+  grouped by year. Invalid dates appear last under Undated. Text is safely rendered.
 - `TRAVEL.md`: these maintenance and preview instructions.
 
 The original README and all five JPEG files are included unchanged in this copy.
-No map library, new photos, dependencies, build configuration, or deployment
-settings have been added. Existing homepage travel photos are not treated as dated trips.
+Leaflet 1.9.4 is the only library, loaded from unpkg with integrity hashes as in
+the [official quick start](https://leafletjs.com/examples/quick-start/).
+No new photos, build configuration, or deployment settings are added.
+Existing homepage travel photos are not treated as dated trips.
 
 ## Preview
 
-Open `travel.html` directly in a browser, or serve the parent directory:
+Serve the repository locally (internet is needed for Leaflet and map tiles):
 
 ```powershell
 cd outputs/website-repository
@@ -48,8 +50,24 @@ Edit `data/trips.js` and add objects to `window.TRAVEL_TRIPS`. Required fields:
 `date` (`YYYY-MM-DD`), `city`, `country`, `coordinates` (`latitude`, `longitude`),
 `description`, and `photos` (array of relative photo paths). Use actual trip dates.
 The code sorts entries automatically; array order does not matter. Photo paths
-and coordinates are stored for later use; the current page does not load images
-or initialize a map. No fabricated trips are supplied.
+are stored for a future gallery; no images are loaded. No fabricated trips are supplied.
+Nested `coordinates` remain supported unchanged; top-level `latitude` and `longitude`
+are accepted when `coordinates` is omitted. Use finite numbers in latitude -90..90
+and longitude -180..180. Zero is valid. Invalid coordinates omit only the marker.
+Invalid dates appear in an Undated timeline group instead of losing a trip.
+
+Markers have 44px touch targets, keyboard focus, city/country/date popups and links
+to timeline entries. Repeated visits at identical coordinates share a popup list.
+The map supports drag, pinch zoom, keyboard controls, and large +/− buttons.
+Wheel zoom is disabled so the page scrolls naturally. An empty dataset shows a
+world view and a helpful message. Leaflet failure preserves the timeline; tile
+failure shows a connection message and retains markers.
+
+Tiles use `https://tile.openstreetmap.org/{z}/{x}/{y}.png` with visible attribution,
+normal browser caching/referrers, and no prefetch or offline download. See the
+[tile policy](https://operations.osmfoundation.org/policies/tiles/).
+No API key or Pages configuration change is required. Automated interaction
+tests mock tiles to avoid automated pan/zoom traffic to the community servers.
 
 Keep links and paths relative (no leading `/`) so they stay within the project
 base path. New photo paths should be relative to `travel.html`.
@@ -62,7 +80,7 @@ The authoritative local Git checkout is now `outputs/website-repository/`, with
 `data/trips.js` at the correct repository-relative paths. The older
 `outputs/my-personal-website/` and ZIP are exports, not this checkout.
 Open `outputs/website-repository/` as the repository in your Git client. Review
-the six changed/new files, create a feature branch, commit, and publish that branch
+the changed files, create a feature branch, commit, and publish that branch
 when ready. Open a pull request targeting `main` and review before merging.
 Do not upload the containing `outputs/` folder into the GitHub repository.
 Leave existing images and other files in place. A push to the publishing

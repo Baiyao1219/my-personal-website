@@ -50,6 +50,7 @@ section{padding:90px 0;border-bottom:1px solid var(--line);scroll-margin-top:35p
 .trip-list li+li{margin-top:30px;padding-top:30px;border-top:1px solid var(--line)}
 .trip-date{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .trip-title{font-size:28px;margin:12px 0}
+.trip-places{font-size:16px;line-height:1.9;color:var(--muted);margin:0 0 12px;overflow-wrap:anywhere}
 .trip-description{white-space:pre-line;overflow-wrap:anywhere}
 .archive-end{padding:45px 0;display:flex;justify-content:space-between;gap:24px;align-items:center}
 footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}

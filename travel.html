@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Baiyao's Travel Archive — a visual journey through places and time.">
+  <title>Travel Archive — Baiyao</title>
+  <link rel="stylesheet" href="travel.css">
+  <script src="data/trips.js" defer></script>
+  <script src="travel.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav aria-label="Main navigation">
+    <a href="index.html" class="logo" aria-label="Baiyao home">BAIYAO.</a>
+    <div class="navlinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="travel.html" aria-current="page">Travel</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+  <main id="main">
+    <header class="archive-hero">
+      <p class="kicker">03 / Places & perspectives</p>
+      <h1>Travel Archive</h1>
+      <p class="subtitle">A visual journey through places and time</p>
+      <a class="text-link" href="#timeline">Explore the timeline <span aria-hidden="true">↓</span></a>
+    </header>
+    <section aria-labelledby="map-title">
+      <div class="sectionhead">
+        <h2 id="map-title">Around the world.</h2>
+        <span class="number">01 / MAP</span>
+      </div>
+      <div class="map-placeholder">
+        <span class="kicker">A world of possibilities</span>
+        <h3>Places, connected.</h3>
+        <p>A future interactive world map will bring the archive together.</p>
+        <span class="coming-soon">Coming later</span>
+      </div>
+    </section>
+    <section id="timeline" aria-labelledby="timeline-title">
+      <div class="sectionhead">
+        <h2 id="timeline-title">Travel Timeline</h2>
+        <span class="number">02 / NEWEST FIRST</span>
+      </div>
+      <div id="trip-timeline">
+        <div class="empty-state">
+          <span class="kicker">The archive begins here</span>
+          <h3>Stories to come.</h3>
+          <p>No trips have been added to this archive yet.</p>
+        </div>
+      </div>
+      <noscript><p class="timeline-note">JavaScript is needed to display future trip entries.</p></noscript>
+    </section>
+    <div class="archive-end"><a class="text-link" href="index.html">← Back to home</a><span class="kicker">Made with curiosity.</span></div>
+  </main>
+  <footer><span>© 2026 Baiyao</span><span>Places & perspectives.</span></footer>
+</body>
+</html>

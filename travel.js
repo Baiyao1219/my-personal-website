@@ -64,6 +64,14 @@
     item.append(date, title);
     if (!trip.city) item.append(places);
     if (description.textContent) item.append(description);
+    if (typeof trip.id === 'string' && trip.id) {
+      const gallery = document.createElement('a');
+      gallery.className = 'text-link trip-gallery-link';
+      gallery.href = `gallery.html?trip=${encodeURIComponent(trip.id)}`;
+      gallery.textContent = 'View Gallery →';
+      gallery.setAttribute('aria-label', `View gallery: ${title.textContent}, ${date.textContent}`);
+      item.append(gallery);
+    }
     list.append(item);
   });
   if (entries.length) timeline.replaceChildren(fragment);

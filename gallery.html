@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Travel photographs from Baiyao's Travel Archive.">
+  <title>Travel Gallery — Baiyao</title>
+  <link rel="stylesheet" href="travel.css?v=4">
+  <link rel="stylesheet" href="gallery.css?v=1">
+  <script src="data/trips.js?v=4" defer></script>
+  <script src="gallery.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav aria-label="Main navigation">
+    <a class="logo" href="index.html" aria-label="Baiyao home">BAIYAO.</a>
+    <div class="navlinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="travel.html">Travel</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+  <main id="main" class="gallery-main">
+    <header class="gallery-hero">
+      <a id="archive-link" class="text-link" href="travel.html">← Travel Archive</a>
+      <p class="kicker">Places & perspectives / Gallery</p>
+      <h1 id="gallery-title">Travel Gallery</h1>
+      <p id="gallery-date" class="gallery-date"></p>
+      <p id="gallery-countries" class="kicker"></p>
+      <p id="gallery-cities" class="gallery-cities"></p>
+    </header>
+    <section class="gallery-section" aria-labelledby="photos-heading">
+      <div class="sectionhead"><h2 id="photos-heading">Photographs</h2><span id="photo-count" class="number"></span></div>
+      <p id="gallery-status" class="gallery-status" role="status">Loading gallery…</p>
+      <div id="photo-grid" class="photo-grid" hidden></div>
+      <noscript><p class="gallery-status">Enable JavaScript to view this trip's gallery.</p></noscript>
+    </section>
+  </main>
+  <footer><span>© 2026 Baiyao</span><a href="travel.html">Back to Travel Archive ↑</a></footer>
+  <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-help">
+    <h2 id="lightbox-title" class="visually-hidden">Travel photo viewer</h2>
+    <p id="lightbox-help" class="visually-hidden">Use left and right arrow keys or swipe to browse photos. Press Escape or Close to return to the gallery.</p>
+    <div class="lightbox-toolbar"><span id="lightbox-counter" aria-live="polite" aria-atomic="true"></span><button id="lightbox-close" type="button" autofocus aria-label="Close photo viewer">Close <span aria-hidden="true">×</span></button></div>
+    <div id="lightbox-media" class="lightbox-media"></div>
+    <div class="lightbox-bottom">
+      <button id="lightbox-previous" type="button" aria-label="Previous photo">← <span>Previous</span></button>
+      <p id="lightbox-caption"></p>
+      <button id="lightbox-next" type="button" aria-label="Next photo"><span>Next</span> →</button>
+    </div>
+  </dialog>
+</body>
+</html>

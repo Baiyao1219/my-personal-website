@@ -6,10 +6,10 @@
   <meta name="description" content="Baiyao's Travel Archive — a visual journey through places and time.">
   <title>Travel Archive — Baiyao</title>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="travel.css?v=2">
+  <link rel="stylesheet" href="travel.css?v=3">
   <script src="vendor/leaflet/leaflet.js" defer></script>
-  <script src="data/trips.js" defer></script>
-  <script src="travel.js?v=2" defer></script>
+  <script src="data/trips.js?v=3" defer></script>
+  <script src="travel.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -36,7 +36,7 @@
       </div>
       <p id="map-help" class="map-help">Drag to explore, pinch or use + and − to zoom. Select a place to find its story.</p>
       <div id="travel-map" class="travel-map" role="region" aria-label="Interactive world map of trips" aria-describedby="map-help map-status"><p class="map-loading">Loading the world map…</p></div>
-      <p id="map-status" class="map-status" role="status">No trips have been added yet. Places will appear here as the archive grows.</p>
+      <p id="map-status" class="map-status" role="status">Loading places from the travel archive…</p>
       <noscript><p class="timeline-note">Enable JavaScript to explore the map. You can still browse the rest of the page.</p></noscript>
     </section>
     <section id="timeline" aria-labelledby="timeline-title">
@@ -46,9 +46,9 @@
       </div>
       <div id="trip-timeline">
         <div class="empty-state">
-          <span class="kicker">The archive begins here</span>
-          <h3>Stories to come.</h3>
-          <p>No trips have been added to this archive yet.</p>
+          <span class="kicker">Places & perspectives</span>
+          <h3>Travel records.</h3>
+          <p>Enable JavaScript to browse the travel records.</p>
         </div>
       </div>
       <noscript><p class="timeline-note">JavaScript is needed to display future trip entries.</p></noscript>

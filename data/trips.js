@@ -1,22 +1,42 @@
 /**
- * Add real trips here when ready. This dataset is deliberately empty.
- * date: ISO calendar date (YYYY-MM-DD), used to sort newest first.
- * city, country, description: plain text.
- * coordinates: { latitude: number (-90..90), longitude: number (-180..180) }.
+ * Confirmed trips only. Keep each id unique and stable for timeline/gallery links.
+ * date: YYYY-MM for a confirmed month, or YYYY-MM-DD for a confirmed day.
+ * places: [{ city, country, latitude, longitude }]; coordinates are finite numbers.
+ * description: optional plain text; omit until personal notes are provided.
  * photos: array of site-relative paths, e.g. "photos/trip-name/image.jpg".
  * Keep paths relative, with no leading slash, for GitHub Pages project hosting.
  * The map uses coordinates; photo paths are reserved for a future gallery.
- * Existing coordinates objects are supported unchanged. Top-level latitude and
- * longitude are also accepted if coordinates is omitted. Use numbers, not strings.
+ * Legacy single-city records and nested coordinates objects remain supported.
  *
  * Shape (template only; not a trip):
  * {
- *   date: "YYYY-MM-DD",
- *   city: "City",
- *   country: "Country",
- *   coordinates: { latitude: 0, longitude: 0 },
- *   description: "Your travel notes.",
+ *   id: "unique-trip-id",
+ *   date: "YYYY-MM",
+ *   places: [{ city: "City", country: "Country", latitude: 0, longitude: 0 }],
  *   photos: []
  * }
  */
-window.TRAVEL_TRIPS = [];
+window.TRAVEL_TRIPS = [
+  {
+    id: '2026-10-croatia',
+    date: '2026-10',
+    places: [
+      // GeoNames city location: https://www.geonames.org/3190261/split.html
+      { city: 'Split', country: 'Croatia', latitude: 43.50891, longitude: 16.43915 },
+      // UNESCO historic city: https://whc.unesco.org/en/list/810/ (N43 31 1.5 E16 15 4.9).
+      { city: 'Trogir', country: 'Croatia', latitude: 43.51708, longitude: 16.25136 },
+      // GeoNames city location: https://www.geonames.org/3186952/zadar.html
+      { city: 'Zadar', country: 'Croatia', latitude: 44.11578, longitude: 15.22514 }
+    ],
+    photos: []
+  },
+  {
+    id: '2026-09-sweden',
+    date: '2026-09',
+    places: [
+      // GeoNames city location: https://www.geonames.org/2673730/stockholm.html
+      { city: 'Stockholm', country: 'Sweden', latitude: 59.32938, longitude: 18.06871 }
+    ],
+    photos: []
+  }
+];

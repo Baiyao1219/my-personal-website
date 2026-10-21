@@ -19,7 +19,8 @@ was unavailable through the connector; the successful build log supplies the sou
 - `travel.html`: dedicated archive with title/subtitle, Leaflet map with
   OpenStreetMap tiles, timeline, empty state, and homepage navigation.
 - `travel.css`: styles for the new page using the existing palette and typography.
-- `data/trips.js`: empty dataset with field documentation and a commented template.
+- `data/trips.js`: confirmed month-level trips with multiple places, stable IDs,
+  empty photo arrays, field documentation, and coordinate sources.
 - `travel.js`: map markers and timeline from the same dataset, newest first and
   grouped by year. Invalid dates appear last under Undated. Text is safely rendered.
 - `TRAVEL.md`: these maintenance and preview instructions.
@@ -30,7 +31,7 @@ license and original image assets. This removes the runtime dependency on unpkg.
 The map container has a responsive explicit height and is visible from the initial
 HTML, with a loading message replaced on initialization. It stays visible even if
 Leaflet cannot load. Versioned Travel CSS/JS URLs avoid reusing the prior cached
-page logic. The world view initializes independently of the empty trip dataset.
+page logic. The world view also initializes if the trip dataset is empty.
 No new photos, build configuration, or deployment settings are added.
 Existing homepage travel photos are not treated as dated trips.
 
@@ -50,18 +51,27 @@ Python command if needed. No installation or build step is required for the site
 
 ## Add a trip later
 
-Edit `data/trips.js` and add objects to `window.TRAVEL_TRIPS`. Required fields:
-`date` (`YYYY-MM-DD`), `city`, `country`, `coordinates` (`latitude`, `longitude`),
-`description`, and `photos` (array of relative photo paths). Use actual trip dates.
+Edit `data/trips.js` and add objects to `window.TRAVEL_TRIPS`. Use a unique, permanent
+`id` containing letters, numbers, hyphens or underscores; `date` (`YYYY-MM` for a
+confirmed month, `YYYY-MM-DD` only for a confirmed day); `places` (an array of
+`{ city, country, latitude, longitude }`); and `photos` (an array of relative paths,
+empty until photos are supplied). `description` is optional. Never fabricate dates
+or personal notes. The new trip shape does not require duplicating country/city at
+the trip level. Each place owns its location; one trip may include multiple countries.
+The supplied trips use `2026-10` (Split, Trogir, Zadar) and `2026-09` (Stockholm).
+Dates render as October 2026 and September 2026, without an invented day.
+Stable timeline anchors are `#trip-2026-10-croatia` and `#trip-2026-09-sweden`.
 The code sorts entries automatically; array order does not matter. Photo paths
 are stored for a future gallery; no images are loaded. No fabricated trips are supplied.
-Nested `coordinates` remain supported unchanged; top-level `latitude` and `longitude`
-are accepted when `coordinates` is omitted. Use finite numbers in latitude -90..90
+Legacy single-city records with nested `coordinates` or top-level latitude and
+longitude remain supported. Use finite numbers in latitude -90..90
 and longitude -180..180. Zero is valid. Invalid coordinates omit only the marker.
 Invalid dates appear in an Undated timeline group instead of losing a trip.
 
 Markers have 44px touch targets, keyboard focus, city/country/date popups and links
-to timeline entries. Repeated visits at identical coordinates share a popup list.
+to timeline entries. Each distinct city/country has one marker, including repeated
+visits. Nearby markers share city/visit links at wide zooms, so Split and Trogir
+remain accessible when their touch targets overlap; zooming in separates them.
 The map supports drag, pinch zoom, keyboard controls, and large +/− buttons.
 Wheel zoom is disabled so the page scrolls naturally. An empty dataset shows a
 world view and a helpful message. Leaflet failure preserves the timeline; tile
@@ -75,6 +85,18 @@ tests mock tiles to avoid automated pan/zoom traffic to the community servers.
 
 Keep links and paths relative (no leading `/`) so they stay within the project
 base path. New photo paths should be relative to `travel.html`.
+
+## Coordinate sources
+
+Coordinates identify cities, not personal routes, hotels, or photo locations:
+
+- [Split — GeoNames](https://www.geonames.org/3190261/split.html): 43.50891, 16.43915.
+- [Trogir — UNESCO historic city](https://whc.unesco.org/en/list/810/):
+  N43 31 1.5 E16 15 4.9, converted and rounded to 43.51708, 16.25136.
+- [Zadar — GeoNames](https://www.geonames.org/3186952/zadar.html): 44.11578, 15.22514.
+- [Stockholm — GeoNames](https://www.geonames.org/2673730/stockholm.html): 59.32938, 18.06871.
+
+GeoNames data is provided under CC BY; these links preserve source credit.
 
 ## Deployment
 

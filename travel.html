@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Baiyao's Travel Archive — a visual journey through places and time.">
   <title>Travel Archive — Baiyao</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="travel.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="travel.css?v=2">
+  <script src="vendor/leaflet/leaflet.js" defer></script>
   <script src="data/trips.js" defer></script>
-  <script src="travel.js" defer></script>
+  <script src="travel.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -35,7 +35,7 @@
         <span class="number">01 / MAP</span>
       </div>
       <p id="map-help" class="map-help">Drag to explore, pinch or use + and − to zoom. Select a place to find its story.</p>
-      <div id="travel-map" class="travel-map" role="region" aria-label="Interactive world map of trips" aria-describedby="map-help map-status" hidden></div>
+      <div id="travel-map" class="travel-map" role="region" aria-label="Interactive world map of trips" aria-describedby="map-help map-status"><p class="map-loading">Loading the world map…</p></div>
       <p id="map-status" class="map-status" role="status">No trips have been added yet. Places will appear here as the archive grows.</p>
       <noscript><p class="timeline-note">Enable JavaScript to explore the map. You can still browse the rest of the page.</p></noscript>
     </section>

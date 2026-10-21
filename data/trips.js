@@ -3,9 +3,10 @@
  * date: YYYY-MM for a confirmed month, or YYYY-MM-DD for a confirmed day.
  * places: [{ city, country, latitude, longitude }]; coordinates are finite numbers.
  * description: optional plain text; omit until personal notes are provided.
- * photos: array of site-relative paths, e.g. "photos/trip-name/image.jpg".
+ * photos: site-relative paths, or { src, alt, width, height, srcset? } objects.
+ * srcset: optional [{ src, width }] image variants. See TRAVEL.md for examples.
  * Keep paths relative, with no leading slash, for GitHub Pages project hosting.
- * The map uses coordinates; photo paths are reserved for a future gallery.
+ * One gallery.html template reads photos by trip id; empty arrays show no images.
  * Legacy single-city records and nested coordinates objects remain supported.
  *
  * Shape (template only; not a trip):

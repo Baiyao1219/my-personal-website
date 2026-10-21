@@ -24,6 +24,8 @@ was unavailable through the connector; the successful build log supplies the sou
 - `travel.js`: map markers and timeline from the same dataset, newest first and
   grouped by year. Invalid dates appear last under Undated. Text is safely rendered.
 - `TRAVEL.md`: these maintenance and preview instructions.
+- `gallery.html`, `gallery.js`, `gallery.css`: one reusable trip gallery with a
+  responsive photo grid and an accessible full-viewport lightbox; no dependencies.
 
 The original README and all five JPEG files are included unchanged in this copy.
 Leaflet 1.9.4 is the only library, served locally from `vendor/leaflet/` with its
@@ -61,8 +63,8 @@ the trip level. Each place owns its location; one trip may include multiple coun
 The supplied trips use `2026-10` (Split, Trogir, Zadar) and `2026-09` (Stockholm).
 Dates render as October 2026 and September 2026, without an invented day.
 Stable timeline anchors are `#trip-2026-10-croatia` and `#trip-2026-09-sweden`.
-The code sorts entries automatically; array order does not matter. Photo paths
-are stored for a future gallery; no images are loaded. No fabricated trips are supplied.
+The code sorts entries automatically; array order does not matter. Photo arrays
+remain empty until personal photos are supplied. No fabricated trips are supplied.
 Legacy single-city records with nested `coordinates` or top-level latitude and
 longitude remain supported. Use finite numbers in latitude -90..90
 and longitude -180..180. Zero is valid. Invalid coordinates omit only the marker.
@@ -84,7 +86,73 @@ No API key or Pages configuration change is required. Automated interaction
 tests mock tiles to avoid automated pan/zoom traffic to the community servers.
 
 Keep links and paths relative (no leading `/`) so they stay within the project
-base path. New photo paths should be relative to `travel.html`.
+base path. Photo paths are relative to `gallery.html` in the repository root.
+
+## Photo galleries
+
+The same `gallery.html` template renders every trip, using its exact stable ID:
+
+- `gallery.html?trip=2026-10-croatia`
+- `gallery.html?trip=2026-09-sweden`
+
+Timeline links open the matching gallery even when it has no photos. Empty arrays
+show **Photos coming soon.**, with no image requests or broken image placeholders.
+Unknown or missing IDs show **Trip not found.** and a Travel Archive link. The
+gallery back link returns to the matching timeline entry. There is no backend,
+database, paid hosting, or duplicated per-trip HTML. Future trips need only a
+unique stable ID and data in `data/trips.js`.
+
+When ready, add your own optimized images to a simple structure:
+
+```text
+photos/
+  2026-10-croatia/
+    descriptive-name-640.webp
+    descriptive-name-1280.webp
+    descriptive-name-2000.webp
+  2026-09-sweden/
+    descriptive-name-2000.webp
+```
+
+These names are examples only; no photo files or placeholder images are included.
+Keep filenames lowercase with hyphens, preserve exact case in paths, and export
+images with their correct orientation. WebP, JPEG, and other browser-supported
+formats work. Around 1600–2400px on the long edge is usually enough for the large
+viewer; smaller variants keep mobile downloads light. Use your actual dimensions
+and a concise description of what is visible for each image's alt text.
+
+Replace a trip's `photos: []` with objects like this, pointing to files you added:
+
+```js
+photos: [{
+  src: 'photos/2026-10-croatia/descriptive-name-2000.webp',
+  alt: 'Describe what is actually visible in your photograph.',
+  width: 2000,
+  height: 1500,
+  // Optional responsive variants; widths must match the exported files.
+  srcset: [
+    { src: 'photos/2026-10-croatia/descriptive-name-640.webp', width: 640 },
+    { src: 'photos/2026-10-croatia/descriptive-name-1280.webp', width: 1280 },
+    { src: 'photos/2026-10-croatia/descriptive-name-2000.webp', width: 2000 }
+  ]
+}]
+```
+
+Optional `caption` text appears below the thumbnail and in the lightbox. A simple
+array of path strings also works; objects are preferred for descriptive alt text,
+dimensions, and responsive variants. Only paths within this project are accepted.
+Do not add a leading slash, `../`, or an external URL. Keep all responsive variants
+at the same aspect ratio. The grid reserves 4:3 frames, crops thumbnails with
+`object-fit: cover`, and uses lazy loading; the lightbox shows the full image with
+`object-fit: contain`. Failed files display an unavailable message instead of a
+broken image icon. A trip may optionally specify a `title`; otherwise the gallery
+uses its country names, without inventing a personal title.
+
+The native modal dialog makes the background inert, traps focus, locks page
+scrolling, and restores focus to the opener on close. Use Previous/Next, left/right
+arrows, or horizontal touch swipes to browse (wrapping at the ends). Escape and
+Close dismiss the viewer. Single-photo galleries disable Previous/Next. The grid
+and controls respect reduced-motion preferences. No photos are added in this step.
 
 ## Coordinate sources
 

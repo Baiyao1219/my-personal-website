@@ -52,6 +52,7 @@ section{padding:90px 0;border-bottom:1px solid var(--line);scroll-margin-top:35p
 .trip-title{font-size:28px;margin:12px 0}
 .trip-places{font-size:16px;line-height:1.9;color:var(--muted);margin:0 0 12px;overflow-wrap:anywhere}
 .trip-description{white-space:pre-line;overflow-wrap:anywhere}
+.trip-gallery-link{margin-top:16px}
 .archive-end{padding:45px 0;display:flex;justify-content:space-between;gap:24px;align-items:center}
 footer{max-width:1300px;margin:auto;padding:35px 6%;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
 .skip-link{position:absolute;left:6%;top:-100px;background:var(--bg);padding:12px;z-index:1}

@@ -52,10 +52,10 @@ trips_path = root / "data" / "trips.js"
 trips_text = trips_path.read_text(encoding="utf-8")
 start = "// BEGIN AUTO-IMPORTED PHOTOS"
 if start in trips_text:
-    trips_text = trips_text.split(start, 1)[0].rstrip() + "\\n"
-trips_text += "\\n" + start + "\\n"
-trips_text += "window.TRAVEL_TRIPS.forEach(trip => {\\n"
-trips_text += "  const records = " + json.dumps(manifest, ensure_ascii=False) + ";\\n"
-trips_text += "  if (records[trip.id]) trip.photos = records[trip.id];\\n"
-trips_text += "});\\n"
+    trips_text = trips_text.split(start, 1)[0].rstrip() + "\n"
+trips_text += "\n" + start + "\n"
+trips_text += "window.TRAVEL_TRIPS.forEach(trip => {\n"
+trips_text += "  const records = " + json.dumps(manifest, ensure_ascii=False) + ";\n"
+trips_text += "  if (records[trip.id]) trip.photos = records[trip.id];\n"
+trips_text += "});\n"
 trips_path.write_text(trips_text, encoding="utf-8")

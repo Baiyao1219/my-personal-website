@@ -41,3 +41,8 @@ window.TRAVEL_TRIPS = [
     photos: []
   }
 ];
+
+window.TRAVEL_TRIPS.forEach(trip => {
+  const imported = window.TRAVEL_PHOTO_MANIFEST && window.TRAVEL_PHOTO_MANIFEST[trip.id];
+  if (Array.isArray(imported)) trip.photos = imported;
+});

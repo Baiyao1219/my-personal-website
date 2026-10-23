@@ -10,7 +10,7 @@ manifest_file = root / "data" / "photo-manifest.js"
 known_ids = []
 for line in (root / "data" / "trips.js").read_text().splitlines():
     stripped = line.strip()
-    if stripped.startswith("id:"):
+    if stripped.startswith("id:") and stripped.count("\'") >= 2:
         known_ids.append(stripped.split("'", 2)[1])
 output.mkdir(parents=True, exist_ok=True)
 
